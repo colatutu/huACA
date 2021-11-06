@@ -1,19 +1,3 @@
-
-# Plot proportion of old and young cells in each cluster
-data_summary <- function(data, varname, groupnames){
-  require(plyr)
-  summary_func <- function(x, col){
-    c(mean = mean(x[[col]], na.rm=TRUE),
-      sd = sd(x[[col]], na.rm=TRUE))
-  }
-  data_sum<-ddply(data, groupnames, .fun=summary_func,
-                  varname)
-  data_sum <- rename(data_sum, c("mean" = varname))
-  return(data_sum)
-}
-
-
-
 # Find DEGs between old and young cell clusters
 getDEGs <- function(seurat.object = seurat.object, ident.1 = ident.1, ident.2 = ident.2){
   
